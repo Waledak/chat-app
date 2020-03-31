@@ -1,16 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Contact = props => (
+
+
+const Contact = props => {
+  const{name, isOnline, image} = props;
+  return(
   <div className="Contact">
-    <img src={props.image} className="avatar" alt=""/>
+    <img src={image} className="avatar" alt=""/>
     <div>
-      <p className="name">{props.name}</p>
+      <p className="name">{name}</p>
       <div className="status">
-        <p className={props.isOnline?"status-online":"status-offline"}/>
-        <p className="status-text">{props.isOnline?"Online":"Offline"}</p>
+        <span className={isOnline?"status-online":"status-offline"}/>
+        <p className="status-text">{isOnline?"Online":"Offline"}</p>
       </div>
     </div>
   </div>
-);
-
+)};
+Contact.propTypes = {
+  name:PropTypes.string.isRequired,
+  isOnline:PropTypes.bool.isRequired,
+  image:PropTypes.string.isRequired
+}
 export default Contact;
